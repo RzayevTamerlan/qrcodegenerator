@@ -12,6 +12,9 @@
       ],
       "@hooks/*": [
         "./lib/hooks/*"
+      ],
+      "@state/*": [
+        "./lib/state/*"
       ]
     }
   }
