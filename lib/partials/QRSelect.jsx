@@ -20,7 +20,7 @@ const QRSelect = () => {
   }
 
   return (
-    <div className='flex justify-center items-center gap-3'>
+    <div className='flex justify-center items-center gap-3 mb-5'>
       <ul className='max-w-[642px] w-full'>
         {qrTypesList.map((type) => (
           <li onClick={() => handleQRType(type.value)} className='cursor-pointer rounded-[30px] w-fit px-5 py-4 border border-1 transition-all duration-300 border-gray-600 hover:border-white' key={type.id}>
