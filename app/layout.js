@@ -17,7 +17,7 @@ export default function RootLayout({children}) {
     <head>
       <meta property="og:title" content="QR Code Generator"/>
       <meta property="og:description" content="Generate QR codes for free. You can create QR codes with logos and colors. Download the QR code as a PNG image."/>
-      <meta property="og:image" content="/assets/qr-code.svg"/>
+      <meta property="og:image" content="/assets/qr-code.png"/>
       <meta property="og:url" content="https://qrcodegenerator-theta.vercel.app/"/>
       <meta property="og:type" content="website"/>
     </head>
