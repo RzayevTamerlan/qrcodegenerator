@@ -88,9 +88,11 @@ const QrImageSelect = () => {
           message: 'Icon size must be greater than 50px.',
         }
       });
-    } else if (e.target.value > 512) {
+    } else if (e.target.value > 2000) {
       setError({
-        message: 'Icon size must be less than 512px.'
+        'icon-size': {
+          message: 'Icon size must be smaller than 2000px.',
+        }
       })
     } else {
       setError({})
