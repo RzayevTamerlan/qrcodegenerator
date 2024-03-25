@@ -44,7 +44,7 @@ const URLForm = () => {
         </div>
         <BtnGroup handleDownload={handleDownload}/>
       </form>
-      <QRCode logoPadding={1} logoImage={qrImage} logoHeight={qrImageSize} logoWidth={qrImageSize} eyeColor={[qrLeftTopEyeColor, qrRightTopEyeColor, qrLeftBottomEyeColor]} bgColor={qrBgColor} fgColor={qrFgColor} size={qrCodeSize} value={qrCodeValue}/>
+      <QRCode ecLevel={"H"} logoPadding={1} logoImage={qrImage} logoHeight={qrImageSize} logoWidth={qrImageSize} eyeColor={[qrLeftTopEyeColor, qrRightTopEyeColor, qrLeftBottomEyeColor]} bgColor={qrBgColor} fgColor={qrFgColor} size={qrCodeSize} value={qrCodeValue}/>
     </div>
   );
 };
