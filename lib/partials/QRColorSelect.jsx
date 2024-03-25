@@ -15,28 +15,30 @@ const QRColorSelect = () => {
   const setQRLeftBottomColor = useQRColor((state) => state.setQREye3Color);
 
   return (
-    <div className='grid grid-rows-5 grid-cols-1 sm:grid-rows-2 sm:grid-cols-3 gap-5'>
-      <div className='flex items-center sm:justify-center gap-2'>
-        <label className='text-xss text-white font-semibold' htmlFor="qrBgColor">QR Background Color</label>
-        <input onChange={(e) => setQRBgColor(e.target.value)} type="color" id="qrBgColor" value={qrBgColor} />
+    <>
+      <div className='grid grid-rows-5 grid-cols-1 sm:grid-rows-2 sm:grid-cols-3 gap-5'>
+        <div className='flex items-center sm:justify-center gap-2'>
+          <label className='text-xss text-white font-semibold' htmlFor="qrBgColor">QR Background Color</label>
+          <input onChange={(e) => setQRBgColor(e.target.value)} type="color" id="qrBgColor" value={qrBgColor} />
+        </div>
+        <div className='flex items-center sm:justify-center gap-2'>
+          <label className='text-xss text-white font-semibold' htmlFor="qrFgColor">QR Foreground Color</label>
+          <input onChange={(e) => setQRFgColor(e.target.value)} type="color" id="qrFgColor" value={qrFgColor} />
+        </div>
+        <div className='flex items-center sm:justify-center gap-2'>
+          <label className='text-xss text-white font-semibold' htmlFor="qrLeftEyeColor">QR Left Top Eye Color</label>
+          <input onChange={(e) => setQRLeftTopColor(e.target.value)} type="color" id="qrLeftEyeColor" value={qrLeftTopEyeColor} />
+        </div>
+        <div className='flex items-center sm:justify-center gap-2'>
+          <label className='text-xss text-white font-semibold' htmlFor="qrRightTopEyeColor">QR Right Top Eye Color</label>
+          <input onChange={(e) => setQRRightTopColor(e.target.value)} type="color" id="qrRightTopEyeColor" value={qrRightTopEyeColor} />
+        </div>
+        <div className='flex items-center sm:justify-center gap-2'>
+          <label className='text-xss text-white font-semibold' htmlFor="qrLeftBottomEyeColor">QR Left Bottom Eye Color</label>
+          <input onChange={(e) => setQRLeftBottomColor(e.target.value)} type="color" id="qrLeftBottomEyeColor" value={qrLeftBottomEyeColor} />
+        </div>
       </div>
-      <div className='flex items-center sm:justify-center gap-2'>
-        <label className='text-xss text-white font-semibold' htmlFor="qrFgColor">QR Foreground Color</label>
-        <input onChange={(e) => setQRFgColor(e.target.value)} type="color" id="qrFgColor" value={qrFgColor} />
-      </div>
-      <div className='flex items-center sm:justify-center gap-2'>
-        <label className='text-xss text-white font-semibold' htmlFor="qrLeftEyeColor">QR Left Top Eye Color</label>
-        <input onChange={(e) => setQRLeftTopColor(e.target.value)} type="color" id="qrLeftEyeColor" value={qrLeftTopEyeColor} />
-      </div>
-      <div className='flex items-center sm:justify-center gap-2'>
-        <label className='text-xss text-white font-semibold' htmlFor="qrRightTopEyeColor">QR Right Top Eye Color</label>
-        <input onChange={(e) => setQRRightTopColor(e.target.value)} type="color" id="qrRightTopEyeColor" value={qrRightTopEyeColor} />
-      </div>
-      <div className='flex items-center sm:justify-center gap-2'>
-        <label className='text-xss text-white font-semibold' htmlFor="qrLeftBottomEyeColor">QR Left Bottom Eye Color</label>
-        <input onChange={(e) => setQRLeftBottomColor(e.target.value)} type="color" id="qrLeftBottomEyeColor" value={qrLeftBottomEyeColor} />
-      </div>
-    </div>
+    </>
   );
 };
 

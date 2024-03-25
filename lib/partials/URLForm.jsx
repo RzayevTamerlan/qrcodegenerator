@@ -8,6 +8,7 @@ import {QRCode} from "react-qrcode-logo";
 import Input from "@components/Input";
 import BtnGroup from "@components/BtnGroup";
 import {useQRColor} from "@state/qrColor";
+import {useQRImage} from "@state/qrImage";
 
 const URLForm = () => {
   const [qrCodeValue, qrCodeSize, handleQRCreate, handleDownload] = useUrlQR();
@@ -16,6 +17,8 @@ const URLForm = () => {
   const qrLeftTopEyeColor = useQRColor((state) => state.qrEye1Color);
   const qrRightTopEyeColor = useQRColor((state) => state.qrEye2Color);
   const qrLeftBottomEyeColor = useQRColor((state) => state.qrEye3Color);
+  const qrImage = useQRImage((state) => state.image);
+  const qrImageSize = useQRImage((state) => state.size);
 
   const {
     register,
@@ -41,7 +44,7 @@ const URLForm = () => {
         </div>
         <BtnGroup handleDownload={handleDownload}/>
       </form>
-      <QRCode eyeColor={[qrLeftTopEyeColor, qrRightTopEyeColor, qrLeftBottomEyeColor]} bgColor={qrBgColor} fgColor={qrFgColor} size={qrCodeSize} value={qrCodeValue}/>
+      <QRCode logoPadding={1} logoImage={qrImage} logoHeight={qrImageSize} logoWidth={qrImageSize} eyeColor={[qrLeftTopEyeColor, qrRightTopEyeColor, qrLeftBottomEyeColor]} bgColor={qrBgColor} fgColor={qrFgColor} size={qrCodeSize} value={qrCodeValue}/>
     </div>
   );
 };

@@ -1,12 +1,18 @@
 import {Collapse} from "antd";
 import Image from "next/image";
 import QRColorSelect from "@partials/QRColorSelect";
+import QRImageSelect from "@partials/QRImageSelect";
 
 const items = [
   {
     key: '1',
     label: <span className='text-white font-semibold'>Change QR Code Color</span>,
     children: <QRColorSelect />,
+  },
+  {
+    key: '2',
+    label: <span className='text-white font-semibold'>Add Icon To The QR Code</span>,
+    children: <QRImageSelect />,
   },
 ];
 
