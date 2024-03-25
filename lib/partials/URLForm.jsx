@@ -41,10 +41,20 @@ const URLForm = () => {
           <Input type='text' errors={errors} name='url' register={register} placeholder='Enter URL or Text'
                  label='Enter URL or Text*'/>
           <Input type='number' errors={errors} name='size' placeholder='Enter Size' register={register} label='Size*'/>
+          {qrCodeSize > 512 &&
+            <span className='text-yellow-400 font-semibold'>QR size is too large for full preview, but you are still able to download it.</span>}
         </div>
         <BtnGroup handleDownload={handleDownload}/>
       </form>
-      <QRCode ecLevel={"H"} logoPadding={1} logoImage={qrImage} logoHeight={qrImageSize} logoWidth={qrImageSize} eyeColor={[qrLeftTopEyeColor, qrRightTopEyeColor, qrLeftBottomEyeColor]} bgColor={qrBgColor} fgColor={qrFgColor} size={qrCodeSize} value={qrCodeValue}/>
+      <div className='hidden'>
+        <QRCode ecLevel={"H"} id='react-qrcode-logo' logoPadding={1} logoImage={qrImage} logoHeight={qrImageSize}
+                logoWidth={qrImageSize} eyeColor={[qrLeftTopEyeColor, qrRightTopEyeColor, qrLeftBottomEyeColor]}
+                bgColor={qrBgColor} fgColor={qrFgColor} size={qrCodeSize} value={qrCodeValue}/>
+      </div>
+      <QRCode ecLevel={"H"} id='react-qr' logoPadding={1} logoImage={qrImage}
+              logoHeight={qrImageSize > 175 ? 175 : qrImageSize} logoWidth={qrImageSize > 175 ? 175 : qrImageSize}
+              eyeColor={[qrLeftTopEyeColor, qrRightTopEyeColor, qrLeftBottomEyeColor]} bgColor={qrBgColor}
+              fgColor={qrFgColor} size={qrCodeSize > 512 ? 512 : qrCodeSize} value={qrCodeValue}/>
     </div>
   );
 };
