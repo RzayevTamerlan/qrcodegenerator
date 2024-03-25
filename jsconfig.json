@@ -1,7 +1,18 @@
 {
   "compilerOptions": {
     "paths": {
-      "@/*": ["./*"]
+      "@/*": [
+        "./*"
+      ],
+      "@components/*": [
+        "./lib/components/*"
+      ],
+      "@partials/*": [
+        "./lib/partials/*"
+      ],
+      "@hooks/*": [
+        "./lib/hooks/*"
+      ]
     }
   }
 }
