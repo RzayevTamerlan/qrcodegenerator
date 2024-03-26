@@ -35,8 +35,6 @@ const URLForm = () => {
     }
   });
 
-  console.log(qrDesign)
-
   return (
     <div className='flex flex-col-reverse sm:flex-row gap-5 items-center sm:items-start justify-center'>
       <form onSubmit={handleSubmit(handleQRCreate)} className='flex flex-col gap-5'>
