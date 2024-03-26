@@ -19,6 +19,7 @@ const URLForm = () => {
   const qrLeftBottomEyeColor = useQRColor((state) => state.qrEye3Color);
   const qrImage = useQRImage((state) => state.image);
   const qrImageSize = useQRImage((state) => state.size);
+  const qrDesign = useQRColor((state) => state.qrDesign);
 
   const {
     register,
@@ -34,6 +35,8 @@ const URLForm = () => {
     }
   });
 
+  console.log(qrDesign)
+
   return (
     <div className='flex flex-col-reverse sm:flex-row gap-5 items-center sm:items-start justify-center'>
       <form onSubmit={handleSubmit(handleQRCreate)} className='flex flex-col gap-5'>
@@ -47,11 +50,11 @@ const URLForm = () => {
         <BtnGroup handleDownload={handleDownload}/>
       </form>
       <div className='hidden'>
-        <QRCode ecLevel={"H"} id='react-qrcode-logo' logoPadding={1} logoImage={qrImage} logoHeight={qrImageSize}
+        <QRCode qrStyle={qrDesign} ecLevel={"H"} id='react-qrcode-logo' logoPadding={1} logoImage={qrImage} logoHeight={qrImageSize}
                 logoWidth={qrImageSize} eyeColor={[qrLeftTopEyeColor, qrRightTopEyeColor, qrLeftBottomEyeColor]}
                 bgColor={qrBgColor} fgColor={qrFgColor} size={qrCodeSize} value={qrCodeValue}/>
       </div>
-      <QRCode ecLevel={"H"} id='react-qr' logoPadding={1} logoImage={qrImage}
+      <QRCode qrStyle={qrDesign} ecLevel={"H"} id='react-qr' logoPadding={1} logoImage={qrImage}
               logoHeight={qrImageSize > 175 ? 175 : qrImageSize} logoWidth={qrImageSize > 175 ? 175 : qrImageSize}
               eyeColor={[qrLeftTopEyeColor, qrRightTopEyeColor, qrLeftBottomEyeColor]} bgColor={qrBgColor}
               fgColor={qrFgColor} size={qrCodeSize > 512 ? 512 : qrCodeSize} value={qrCodeValue}/>

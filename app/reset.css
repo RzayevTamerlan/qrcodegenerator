@@ -39,3 +39,9 @@ input[type=number]::-webkit-outer-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
+
+.ant-btn:hover,
+.dropdown-space:hover {
+    transition: all 0.3s;
+    background-color: transparent !important;
+}

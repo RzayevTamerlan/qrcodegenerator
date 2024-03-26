@@ -6,7 +6,7 @@ import QRImageSelect from "@partials/QRImageSelect";
 const items = [
   {
     key: '1',
-    label: <span className='text-white font-semibold'>Change QR Code Color</span>,
+    label: <span className='text-white font-semibold'>Change QR Code Color And Design</span>,
     children: <QRColorSelect />,
   },
   {
