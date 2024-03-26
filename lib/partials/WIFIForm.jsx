@@ -1,11 +1,9 @@
 'use client';
 
-import useUrlQR from "@hooks/useUrlQR";
 import {useQRColor} from "@state/qrColor";
 import {useQRImage} from "@state/qrImage";
 import {useForm} from "react-hook-form";
 import {yupResolver} from "@hookform/resolvers/yup";
-import {QRURLFormSchema} from "@/lib/schema/QRURLFormSchema";
 import Input from "@components/Input";
 import BtnGroup from "@components/BtnGroup";
 import {QRCode} from "react-qrcode-logo";
@@ -14,6 +12,7 @@ import {QRWIFIFormSchema} from "@/lib/schema/QRWIFIFormSchema";
 import {QRWIFINopassSchema} from "@/lib/schema/QRWIFINopassSchema";
 import DropdownList from "@components/DropdownList";
 import {Button, Dropdown, Space} from "antd";
+import {toast} from "react-toastify";
 
 const WifiForm = () => {
   const [qrSSID, qrPassword, setQrSecurity, qrSecurity, realSecurity, qrCodeSize, handleQRCreate, handleDownload] = useWIFIQR();
@@ -50,6 +49,23 @@ const WifiForm = () => {
     setQrSecurity(security);
   }
 
+  const copyImageFromCanvas = async () => {
+    const canvas = document.querySelector('#react-qrcode-logo');
+
+    if (canvas) {
+      const blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/png'));
+      const item = new ClipboardItem({ 'image/png': blob });
+
+      navigator.clipboard.write([item])
+        .then(() => {
+          toast.success('Image copied to clipboard!🙌')
+        })
+        .catch(() => {
+          toast.error('Failed to copy image to clipboard!??😡')
+        });
+    }
+  };
+
   const qrCodeValue = `WIFI:S:${qrSSID};T:${realSecurity};P:${qrPassword};;`;
 
   return (
@@ -84,10 +100,15 @@ const WifiForm = () => {
                 logoWidth={qrImageSize} eyeColor={[qrLeftTopEyeColor, qrRightTopEyeColor, qrLeftBottomEyeColor]}
                 bgColor={qrBgColor} fgColor={qrFgColor} size={qrCodeSize} value={qrCodeValue}/>
       </div>
-      <QRCode qrStyle={qrDesign} ecLevel={"H"} id='react-qr' logoPadding={1} logoImage={qrImage}
-              logoHeight={qrImageSize > 175 ? 175 : qrImageSize} logoWidth={qrImageSize > 175 ? 175 : qrImageSize}
-              eyeColor={[qrLeftTopEyeColor, qrRightTopEyeColor, qrLeftBottomEyeColor]} bgColor={qrBgColor}
-              fgColor={qrFgColor} size={qrCodeSize > 512 ? 512 : qrCodeSize} value={qrCodeValue}/>
+      <div className='flex flex-col gap-4'>
+        <QRCode qrStyle={qrDesign} ecLevel={"H"} id='react-qr' logoPadding={1} logoImage={qrImage}
+                logoHeight={qrImageSize > 175 ? 175 : qrImageSize} logoWidth={qrImageSize > 175 ? 175 : qrImageSize}
+                eyeColor={[qrLeftTopEyeColor, qrRightTopEyeColor, qrLeftBottomEyeColor]} bgColor={qrBgColor}
+                fgColor={qrFgColor} size={qrCodeSize > 512 ? 512 : qrCodeSize} value={qrCodeValue}/>
+        <Button onClick={copyImageFromCanvas} className='text-white font-medium text-center text-xxs py-4 h-fit'>
+          Copy to Clipboard
+        </Button>
+      </div>
     </div>
   );
 };

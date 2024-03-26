@@ -7,6 +7,8 @@ import BtnGroup from "@components/BtnGroup";
 import {QRCode} from "react-qrcode-logo";
 import useEmailQR from "@hooks/useEmailQR";
 import {QREmailSchema} from "@/lib/schema/QREmailSchema";
+import {toast} from "react-toastify";
+import {Button} from "antd";
 
 const EmailForm = () => {
   const [qrEmail, qrSubject, qrMessage, qrCodeSize, handleQRCreate, handleDownload] = useEmailQR();
@@ -35,6 +37,23 @@ const EmailForm = () => {
     }
   });
 
+  const copyImageFromCanvas = async () => {
+    const canvas = document.querySelector('#react-qrcode-logo');
+
+    if (canvas) {
+      const blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/png'));
+      const item = new ClipboardItem({ 'image/png': blob });
+
+      navigator.clipboard.write([item])
+        .then(() => {
+          toast.success('Image copied to clipboard!🙌')
+        })
+        .catch(() => {
+          toast.error('Failed to copy image to clipboard!??😡')
+        });
+    }
+  };
+
   const qrCodeValue = `mailto:${qrEmail}?subject=${qrSubject ? qrSubject : ''}&body=${qrMessage ? qrMessage : ''}`;
 
   return (
@@ -58,10 +77,15 @@ const EmailForm = () => {
                 logoWidth={qrImageSize} eyeColor={[qrLeftTopEyeColor, qrRightTopEyeColor, qrLeftBottomEyeColor]}
                 bgColor={qrBgColor} fgColor={qrFgColor} size={qrCodeSize} value={qrCodeValue}/>
       </div>
-      <QRCode qrStyle={qrDesign} ecLevel={"H"} id='react-qr' logoPadding={1} logoImage={qrImage}
-              logoHeight={qrImageSize > 175 ? 175 : qrImageSize} logoWidth={qrImageSize > 175 ? 175 : qrImageSize}
-              eyeColor={[qrLeftTopEyeColor, qrRightTopEyeColor, qrLeftBottomEyeColor]} bgColor={qrBgColor}
-              fgColor={qrFgColor} size={qrCodeSize > 512 ? 512 : qrCodeSize} value={qrCodeValue}/>
+      <div className='flex flex-col gap-4'>
+        <QRCode qrStyle={qrDesign} ecLevel={"H"} id='react-qr' logoPadding={1} logoImage={qrImage}
+                logoHeight={qrImageSize > 175 ? 175 : qrImageSize} logoWidth={qrImageSize > 175 ? 175 : qrImageSize}
+                eyeColor={[qrLeftTopEyeColor, qrRightTopEyeColor, qrLeftBottomEyeColor]} bgColor={qrBgColor}
+                fgColor={qrFgColor} size={qrCodeSize > 512 ? 512 : qrCodeSize} value={qrCodeValue}/>
+        <Button onClick={copyImageFromCanvas} className='text-white font-medium text-center text-xxs py-4 h-fit'>
+          Copy to Clipboard
+        </Button>
+      </div>
     </div>
   );
 };
