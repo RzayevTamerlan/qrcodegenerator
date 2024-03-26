@@ -2,6 +2,7 @@
 
 import {useQRColor} from "@state/qrColor";
 import {Button, Dropdown, Space} from "antd";
+import DropdownList from "@components/DropdownList";
 
 const QRColorSelect = () => {
   const qrBgColor = useQRColor((state) => state.qrBgColor);
@@ -66,14 +67,7 @@ const QRColorSelect = () => {
         <div className='flex items-center sm:justify-center gap-2'>
           <label className='text-xss text-white font-semibold' htmlFor="qrDesign">QR Design</label>
           <Dropdown overlay={
-            <ul className='w-full rounded-[10px] overflow-hidden'>
-              {items.map(item => (
-                <li className='cursor-pointer font-medium bg-white p-2 transition-all duration-300 hover:bg-gray-200'
-                    key={item.key} onClick={() => handleDesignChange(item.prop)}>
-                  {item.label}
-                </li>
-              ))}
-            </ul>
+            <DropdownList items={items} handler={handleDesignChange}/>
           }>
             <Button>
               <Space>
